@@ -1,0 +1,2 @@
+FROM FROM gcr.io/google_containers/pause:3.1
+MAINTAINER jahentao <jahentao@qq.com>
