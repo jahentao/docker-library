@@ -4,13 +4,13 @@
 
 脚本适用于CentOS 7。
 
-部署示例：1 Master 2 Walker
+部署示例：1 Master 2 WORKer
 
-需要替换`MASTER_IP`、`WALK1_IP=192.168.237.12`、`WALK1_IP=192.168.237.13`
+需要替换`MASTER_IP`、`WORK1_IP=192.168.237.12`、`WORK1_IP=192.168.237.13`
 
 Master 节点IP: `MASTER_IP=192.168.237.11`
 
-Walker 节点IP: `WALK1_IP=192.168.237.12` `WALK2_IP=192.168.237.13`
+WORKer 节点IP: `WORK1_IP=192.168.237.12` `WORK2_IP=192.168.237.13`
 
 本脚本部署指定环境：
 软件       | 版本                   
@@ -50,9 +50,17 @@ chmod +x *.sh
 ./kubeadm_init_master.sh
 
 ```
+一些系统设置可能已经设置好，会中断脚本，若不幸中断，需要自己修改/操作，完成脚本。
+
+需要记录`kubeadm init`的token
+
+样例如：
+```bash
+kubeadm join 192.168.237.11:6443 --token mvp9oi.b1azhgrtk1iistwx --discovery-token-ca-cert-hash sha256:4d33679b0428289c5516253736497469a90ba34d1d4aa6f16e1672c19c9e9995
+```
 
 
-## Walk 节点 `WALK1_IP` `WALK2_IP`
+## WORK 节点 `WORK1_IP` `WORK2_IP`
 
 ```bash
 cd kubeadm_v1.13.2
