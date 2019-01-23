@@ -52,6 +52,12 @@ EOF
 
 sysctl --system
 
+# Upadate Time 
+yum install -y ntpdate
+ntpdate cn.pool.ntp.org
+# `crontab -e`  input
+# 0-59/10 * * * * /usr/sbin/ntpdate us.pool.ntp.org | logger -t NTP
+
 # Use Aliyun Yum source
 echo "###############################################"
 echo "Use Aliyun Yum source"

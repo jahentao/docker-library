@@ -8,16 +8,17 @@ set -e
 # For running kubeadm without an internet connection you have to pre-pull the required master images for the version of choice:
 KUBE_VERSION=v1.13.2
 KUBE_PAUSE_VERSION=3.1
+FLANNEL_VERSION=v0.10.0-amd64
 
 GCR_URL=k8s.gcr.io
 ALIYUN_URL=registry.cn-hangzhou.aliyuncs.com/jahentao
 
-# When test v1.11.0, I found Kubernetes depends on both pause-amd64:3.1 and pause:3.1 
-
-images=(kube-proxy-amd64:${KUBE_VERSION}
-pause-amd64:${KUBE_PAUSE_VERSION}
+images=(kube-proxy:${KUBE_VERSION}
 pause:${KUBE_PAUSE_VERSION})
 
+docker pull ${ALIYUN_URL}/flannel:${FLANNEL_VERSION}
+docker tag ${ALIYUN_URL}/flannel:${FLANNEL_VERSION} quay.io/coreos/flannel:${FLANNEL_VERSION}
+docker rmi ${ALIYUN_URL}/flannel:${FLANNEL_VERSION}
 
 for imageName in ${images[@]} ; do
   docker pull $ALIYUN_URL/$imageName
