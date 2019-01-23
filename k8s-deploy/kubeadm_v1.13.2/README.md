@@ -13,6 +13,7 @@ Master 节点IP: `MASTER_IP=192.168.237.11`
 WORKer 节点IP: `WORK1_IP=192.168.237.12` `WORK2_IP=192.168.237.13`
 
 本脚本部署指定环境：
+
 软件       | 版本                   
 --         |--                      
 docker-ce  | 17.03.2.ce-1.el7.centos
@@ -70,7 +71,11 @@ chmod +x *.sh
 ./kubeadm_join_node.sh
 ```
 
+将节点加入集群
 
+```bash
+kubeadm join 192.168.237.11:6443 --token mvp9oi.b1azhgrtk1iistwx --discovery-token-ca-cert-hash sha256:4d33679b0428289c5516253736497469a90ba34d1d4aa6f16e1672c19c9e9995
+```
 
 
 
